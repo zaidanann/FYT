@@ -1,57 +1,270 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feel Your Trip</title>
-  <link rel="stylesheet" href="catalog.css" />
-</head>
-<!DOCTYPE html>
-<html lang="id">
+/* RESET SEMUA ELEMEN */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-<body>
-  <video autoplay muted loop playsinline id="bg-video">
-  <source src="FPV Drone Flight through Beautiful Iceland Canyon.mp4" type="video/mp4" />
-  Browser kamu tidak mendukung video.
-</video>
-  <header>
-    <h1 class="fade-in delay-1"><span class="highlight">FEEL YOUR</span> TRIP </h1>
-  </header>
+/* GAYA DASAR UNTUK BODY */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000000;                 /* Latar belakang lebih terang dan lembut */
+  color: #333;
+}
 
-  <main class="catalog">
-    <!-- Gunung -->
-    <section class="row">
-      <div class="text-box">
-        <h2>Gunung</h2>
-        <p>Pendakian Open Trip</p>
-      </div>
-      <div class="image-box" style="background-image: url('IMG-20240818-WA0217.jpg');">
-        <span class="label">GUNUNG</span>
-      </div>
-    </section>
+header{
 
-    <!-- Pulau -->
-    <section class="row reverse">
-      
-      <div class="text-box1">
-        <h2>Pulau</h2>
-        <p>Private Trip</p>
-      </div>
-      <div class="image-box" style="background-image: url('DSC09598.JPG');">
-        <span class="label">PULAU</span>
-      </div>
-    </section>
+  display: flex;
+  justify-content: center;  /* Tengah horizontal */
+  align-items: center;      /* Tengah vertikal */
+  height: 100px;            /* Tinggi penuh viewport supaya vertikal bisa tengah */
+  color: white;             /* Warna teks */
+  text-align: center;       /* Teks rata tengah */
+  background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan 50% */
+}
+/* Animasi fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Mulai sedikit turun */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    <!-- Air Terjun -->
-    <section class="row">
-      <div class="text-box">
-        <h2>Air Terjun</h2>
-        <p>Healing</p>
-      </div>
-      <div class="image-box" style="background-image: url('IMG-20240818-WA0217.jpg');">
-        <span class="label">AIR TERJUN</span>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+/* Kelas fade-in */
+.fade-in {
+  opacity: 0;                /* Mulai tersembunyi */
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;  /* Pertahankan posisi akhir */
+  animation-duration: 1s;         /* Durasi animasi */
+  animation-timing-function: ease-out;
+}
+
+/* Delay untuk delay-1 (1 detik) */
+.delay-1 {
+  animation-delay: 1s;
+}
+
+
+/* KONTAINER KATALOG */
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* BARIS UTAMA */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* VARIASI BARIS DIBALIK */
+.row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* KOTAK TEKS & GAMBAR */
+.text-box, .text-box1, .image-box {
+  flex: 1 1 48%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+/* TEXT BOX UMUM */
+.text-box, .text-box1 {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);      /* Tambah bayangan */
+  transition: transform 0.3s ease;
+}
+
+.text-box:hover, .text-box1:hover {
+  transform: translateY(-10px);               /* Hover naik sedikit */
+}
+
+/* TEXT BOX RATA KANAN */
+.text-box1 {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* JUDUL DI KOTAK TEKS */
+.text-box h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+/* PARAGRAF DI KOTAK TEKS */
+.text-box p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* KOTAK GAMBAR */
+.image-box {
+  height: 350px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.image-box:hover {
+  transform: scale(1.02);                    /* Sedikit membesar saat hover */
+}
+
+/* LABEL DI GAMBAR */
+.label {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 6px 18px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* OVERLAY GELAP DI ATAS GAMBAR */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+/* RESPONSIF UNTUK LAYAR KECIL */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .text-box, .text-box1, .image-box {
+    flex: 1 1 100%;
+  }
+
+  .text-box1 {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+}
+
+/* Tambahan RESPONSIF untuk semua elemen agar lebih fleksibel */
+body {
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* HEADER Responsif */
+header {
+  height: auto;
+  padding: 20px;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* JUDUL HEADER */
+header h1 {
+  font-size: 2.2rem;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+/* Gaya tambahan agar teks tidak terpotong di HP */
+.text-box h2,
+.text-box p {
+  word-break: break-word;
+}
+
+/* RESPONSIF KHUSUS HP & TABLET */
+@media (max-width: 768px) {
+  .catalog {
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .text-box,
+  .text-box1,
+  .image-box {
+    flex: 1 1 100%;
+    padding: 15px;
+  }
+
+  .text-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .text-box p {
+    font-size: 1rem;
+  }
+
+  .label {
+    font-size: 0.9rem;
+    padding: 5px 14px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* RESPONSIF UNTUK HP SANGAT KECIL (< 480px) */
+@media (max-width: 480px) {
+  .text-box h2 {
+    font-size: 1.2rem;
+  }
+
+  .text-box p {
+    font-size: 0.95rem;
+  }
+
+  .catalog {
+    padding: 15px 10px;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}
