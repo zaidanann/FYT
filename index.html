@@ -17,7 +17,7 @@
       <h3 class="fade-in">WELCOME</h3>
       <h1 class="fade-in delay-1"><span class="highlight">FEEL YOUR</span> TRIP </h1>
       <p class="fade-in delay-2">Rasakan setiap perjalananmu</p>
-      <button class="login-btn fade-in delay-3" >Masuk</button>
+      <button class="login-btn fade-in delay-3" onclick="goToCatalog()">Masuk</button>
     </div>
   </div>
 
@@ -26,6 +26,9 @@
     fades.forEach((el, i) => {
       el.style.animationDelay = `${i * 0.5}s`;
     });
+    function goToCatalog() {
+    window.location.href = "catalog.html";
+  }
   </script>
 </body>
 </html>
