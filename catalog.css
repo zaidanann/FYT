@@ -34,19 +34,26 @@ header{
   }
 }
 
-/* Kelas fade-in */
-.fade-in {
-  opacity: 0;                /* Mulai tersembunyi */
-  animation-name: fadeIn;
-  animation-fill-mode: forwards;  /* Pertahankan posisi akhir */
-  animation-duration: 1s;         /* Durasi animasi */
-  animation-timing-function: ease-out;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Penuh layar */
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
-/* Delay untuk delay-1 (1 detik) */
-.delay-1 {
-  animation-delay: 1s;
+header h1 {
+  color: white;
+  font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
 
 
 /* KONTAINER KATALOG */
