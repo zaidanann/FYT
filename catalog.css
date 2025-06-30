@@ -68,9 +68,6 @@ header{
 }
 
 /* VARIASI BARIS DIBALIK */
-.row.reverse {
-  flex-direction: row-reverse;
-}
 
 /* KOTAK TEKS & GAMBAR */
 .text-box, .text-box1, .image-box {
@@ -80,24 +77,6 @@ header{
   flex-direction: column;
   justify-content: center;
   border-radius: 10px;
-}
-
-/* TEXT BOX UMUM */
-.text-box, .text-box1 {
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 25px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);      /* Tambah bayangan */
-  transition: transform 0.3s ease;
-}
-
-.text-box:hover, .text-box1:hover {
-  transform: translateY(-10px);               /* Hover naik sedikit */
-}
-
-/* TEXT BOX RATA KANAN */
-.text-box1 {
-  align-items: flex-end;
-  text-align: right;
 }
 
 /* JUDUL DI KOTAK TEKS */
@@ -115,10 +94,11 @@ header{
 
 /* KOTAK GAMBAR */
 .image-box {
-  height: 350px;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
+  width: 300px; 
+  height: 300px;                        /* Gunakan seluruh lebar kontainer */
+  aspect-ratio: 1 / 1;                 /* Rasio 1:1 agar bentuk persegi */
+  background-size: cover;             /* Gambar penuh tanpa distorsi */
+  background-position: center;        /* Fokus di tengah gambar */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -127,22 +107,25 @@ header{
 }
 
 .image-box:hover {
-  transform: scale(1.02);                    /* Sedikit membesar saat hover */
+  transform: scale(1.02);
 }
 
-/* LABEL DI GAMBAR */
+/* LABEL DI TENGAH GAMBAR */
 .label {
   position: absolute;
-  bottom: 10px;
-  left: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 6px 18px;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 6px;
   letter-spacing: 1px;
   z-index: 2;
+  text-align: center;
 }
+
 
 /* OVERLAY GELAP DI ATAS GAMBAR */
 .overlay {
@@ -183,88 +166,3 @@ header{
   object-fit: cover;
 }
 
-/* Tambahan RESPONSIF untuk semua elemen agar lebih fleksibel */
-body {
-  line-height: 1.6;
-  font-size: 16px;
-  overflow-x: hidden;
-}
-
-/* HEADER Responsif */
-header {
-  height: auto;
-  padding: 20px;
-  flex-direction: column;
-  text-align: center;
-}
-
-/* JUDUL HEADER */
-header h1 {
-  font-size: 2.2rem;
-  text-align: center;
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-}
-
-/* Gaya tambahan agar teks tidak terpotong di HP */
-.text-box h2,
-.text-box p {
-  word-break: break-word;
-}
-
-/* RESPONSIF KHUSUS HP & TABLET */
-@media (max-width: 768px) {
-  .catalog {
-    padding: 20px;
-  }
-
-  .row {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .text-box,
-  .text-box1,
-  .image-box {
-    flex: 1 1 100%;
-    padding: 15px;
-  }
-
-  .text-box h2 {
-    font-size: 1.5rem;
-  }
-
-  .text-box p {
-    font-size: 1rem;
-  }
-
-  .label {
-    font-size: 0.9rem;
-    padding: 5px 14px;
-  }
-
-  header h1 {
-    font-size: 1.8rem;
-  }
-}
-
-/* RESPONSIF UNTUK HP SANGAT KECIL (< 480px) */
-@media (max-width: 480px) {
-  .text-box h2 {
-    font-size: 1.2rem;
-  }
-
-  .text-box p {
-    font-size: 0.95rem;
-  }
-
-  .catalog {
-    padding: 15px 10px;
-  }
-
-  .label {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-  }
-}
